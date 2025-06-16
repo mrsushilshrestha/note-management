@@ -125,6 +125,8 @@ nav ul li a {
     padding: 8px 15px;
     border-radius: var(--border-radius);
     transition: all 0.3s ease;
+    text-decoration: none;
+    color: black; /* optional: to control link color */
 }
 
 nav ul li a.active {
