@@ -38,9 +38,9 @@ const CONFIG = {
         },
         // 6th Semester
         6: {
-            notes: "https://drive.google.com/drive/folders/6xxxxxxxxxxxxxxxx",
-            pastQuestions: "https://drive.google.com/drive/folders/6xxxxxxxxxxxxxxxx",
-            syllabus: "https://drive.google.com/drive/folders/6xxxxxxxxxxxxxxxx"
+            notes: "https://drive.google.com/drive/folders/1hCOYWYCUcO0MlsNE1hnUWMA443NJWZn3?usp=drive_link",
+            pastQuestions: "https://drive.google.com/drive/folders/1JkHluKhZpVH3gBl59fycr2VI8cKdyEDj?usp=drive_link",
+            syllabus: "https://drive.google.com/drive/folders/10qX4ts5aJ81OaRmwT_F4mOL-es3eVQ0J?usp=drive_link"
         },
         // 7th Semester
         7: {
