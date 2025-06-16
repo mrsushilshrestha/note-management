@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - BIT Notes Management System</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .notes-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+        .notes-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .notes-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .notes-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+        .notes-card p {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .notes-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+        }
+        .notes-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+        }
+        .notes-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        /* Tab styling */
+        .nav-tabs .nav-link {
+            color: var(--dark-color);
+            font-weight: 600;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 0;
+            position: relative;
+        }
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            background-color: transparent;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        .nav-tabs .nav-link:hover:not(.active) {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>BIT Notes Portal</h1>
+                <p>Purbanchal University</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="notes.html" class="active">Notes</a></li>
+                    <li><a href="past-questions.html">Past Questions</a></li>
+                    <li><a href="syllabus.html">Syllabus</a></li>
+                    <li><a href="news.html">News & Notices</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Notes</h1>
+            <p>Access study notes for all semesters</p>
+        </div>
+    </section>
+
+    <!-- Notes Section -->
+    <section class="notes-section">
+        <div class="container">
+            <div class="row">
+                <!-- 1st Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>1st Semester Notes</h3>
+                            <p>Complete collection of notes for 1st semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="1" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2nd Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>2nd Semester Notes</h3>
+                            <p>Complete collection of notes for 2nd semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="2" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3rd Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>3rd Semester Notes</h3>
+                            <p>Complete collection of notes for 3rd semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="3" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4th Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>4th Semester Notes</h3>
+                            <p>Complete collection of notes for 4th semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="4" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 5th Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>5th Semester Notes</h3>
+                            <p>Complete collection of notes for 5th semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="5" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 6th Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>6th Semester Notes</h3>
+                            <p>Complete collection of notes for 6th semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="6" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 7th Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>7th Semester Notes</h3>
+                            <p>Complete collection of notes for 7th semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="7" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 8th Semester Notes -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="notes-card">
+                        <div class="text-center">
+                            <i class="fas fa-book notes-icon"></i>
+                            <h3>8th Semester Notes</h3>
+                            <p>Complete collection of notes for 8th semester subjects</p>
+                            <a href="#" class="notes-link drive-link" data-semester="8" data-type="notes">
+                                <i class="fas fa-download"></i> Access Notes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advertisement Section -->
+    <section class="advertisements">
+        <div class="container">
+            <h2>Advertisements</h2>
+            <div class="ad-banner">
+                <img src="../assets/images/ad-banner1.jpg" alt="Advertisement" class="ad-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>BIT Notes Portal</h3>
+                    <p>A resource for BIT students at Pokhara University</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="notes.html">Notes</a></li>
+                        <li><a href="past-questions.html">Past Questions</a></li>
+                        <li><a href="syllabus.html">Syllabus</a></li>
+                        <li><a href="news.html">News & Notices</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>Email: contact@bitnotes.com</p>
+                    <p>Phone: +977 1234567890</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BIT Notes Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

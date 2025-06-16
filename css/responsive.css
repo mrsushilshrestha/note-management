@@ -1,0 +1,257 @@
+/* Responsive Styles - Mobile First Approach */
+
+/* Base styles for mobile devices */
+.mobile-nav-toggle {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background-color: white;
+    z-index: 999;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    padding-top: 70px;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.sidebar-header p {
+    color: var(--text-color);
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+}
+
+.sidebar-menu {
+    padding: 20px;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 15px;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--dark-color);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.sidebar-menu a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Hide desktop navigation on mobile */
+@media (max-width: 768px) {
+    header nav {
+        display: none;
+    }
+    
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    .hero {
+        padding: 80px 0;
+    }
+    
+    .hero-content h2 {
+        font-size: 28px;
+    }
+    
+    .semester-grid,
+    .news-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+    
+    section h2 {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-links h4::after,
+    .footer-contact h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-links {
+        justify-content: center;
+        display: flex;
+    }
+    
+    /* Responsive cards */
+    .notes-card,
+    .question-card,
+    .syllabus-card,
+    .news-card {
+        padding: 20px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 576px) {
+    .container {
+        width: 95%;
+    }
+    
+    .hero-content h2 {
+        font-size: 24px;
+    }
+    
+    .page-title h1 {
+        font-size: 28px;
+    }
+    
+    .mobile-nav-toggle {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* Medium Devices (Tablets) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .hero-content h2 {
+        font-size: 32px;
+    }
+    
+    .semester-grid,
+    .news-grid,
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Show desktop navigation and hide mobile toggle */
+    .mobile-nav-toggle {
+        display: none;
+    }
+    
+    header nav {
+        display: block;
+    }
+}
+
+/* Large Devices (Desktops) */
+@media (min-width: 993px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    /* Show desktop navigation and hide mobile toggle */
+    .mobile-nav-toggle {
+        display: none;
+    }
+    
+    header nav {
+        display: block;
+    }
+}
+
+/* Extra Large Devices */
+@media (min-width: 1201px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Print styles */
+@media print {
+    header, footer, .mobile-nav-toggle, .sidebar, .overlay {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+}

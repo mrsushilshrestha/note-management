@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BIT Notes Portal - Access study materials, past questions, syllabus for Purbanchal University BIT program">
+    <meta name="keywords" content="BIT, Purbanchal University, notes, past questions, syllabus, computer science, IT education, Nepal">
+    <meta name="author" content="BIT Notes Portal">
+    <title>BIT Notes Management System - Purbanchal University</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="BIT Notes Portal - Purbanchal University">
+    <meta property="og:description" content="Access study materials, past questions, syllabus for Purbanchal University BIT program">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bitnotes.edu.np">
+    <meta property="og:image" content="path/to/og-image.jpg">
+</head>
+<body>
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>BIT Notes Portal</h3>
+            <p>Purbanchal University</p>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="pages/notes.html"><i class="fas fa-book"></i> Notes</a></li>
+                <li><a href="pages/past-questions.html"><i class="fas fa-file-alt"></i> Past Questions</a></li>
+                <li><a href="pages/syllabus.html"><i class="fas fa-list"></i> Syllabus</a></li>
+                <li><a href="pages/news.html"><i class="fas fa-newspaper"></i> News & Notices</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>BIT Notes Portal</h1>
+                <p>Purbanchal University</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="pages/notes.html">Notes</a></li>
+                    <li><a href="pages/past-questions.html">Past Questions</a></li>
+                    <li><a href="pages/syllabus.html">Syllabus</a></li>
+                    <li><a href="pages/news.html">News & Notices</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to BIT Notes Portal</h2>
+                <p>Access study materials, past questions, syllabus, and stay updated with the latest notices</p>
+                <a href="#semester-section" class="btn btn-primary">Browse Semesters</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Updates Section -->
+    <section class="latest-updates">
+        <div class="container">
+            <h2>Latest Updates</h2>
+            <div class="updates-ticker">
+                <marquee behavior="scroll" direction="left">
+                    <span>📢 Exam Registration for Fall 2023 is now open</span>
+                    <span>📚 New notes uploaded for 3rd Semester Database Management</span>
+                    <span>🎓 Results for Spring 2023 announced</span>
+                </marquee>
+            </div>
+        </div>
+    </section>
+
+    <!-- Semester Section -->
+    <section id="semester-section" class="semesters">
+        <div class="container">
+            <h2>Browse by Semester</h2>
+            <div class="semester-grid">
+                <div class="semester-card">
+                    <h3>1st Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="1" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="1" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="1" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <h3>2nd Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="2" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="2" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="2" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <h3>3rd Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="3" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="3" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="3" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <h3>4th Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="4" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="4" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="4" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <h3>5th Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="5" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="5" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="5" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <h3>6th Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="6" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="6" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="6" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <h3>7th Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="7" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="7" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="7" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+                <div class="semester-card">
+                    <h3>8th Semester</h3>
+                    <div class="semester-links">
+                        <a href="#" class="drive-link" data-semester="8" data-type="notes">Notes</a>
+                        <a href="#" class="drive-link" data-semester="8" data-type="past-questions">Past Questions</a>
+                        <a href="#" class="drive-link" data-semester="8" data-type="syllabus">Syllabus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Notices Section -->
+    <section class="news-notices">
+        <div class="container">
+            <h2>News & Notices</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-date">June 15, 2023</div>
+                    <h3>Exam Schedule for Fall 2023</h3>
+                    <p>The examination schedule for Fall 2023 has been announced. Check the official PU website for details.</p>
+                    <a href="#" class="pu-link" data-notice="exam-schedule">Read More</a>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">June 10, 2023</div>
+                    <h3>Results Announced</h3>
+                    <p>Results for Spring 2023 semester have been announced. Check your results on the PU portal.</p>
+                    <a href="#" class="pu-link" data-notice="results">Read More</a>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">June 5, 2023</div>
+                    <h3>Registration Deadline</h3>
+                    <p>Last date for exam registration is June 30, 2023. Complete your registration before the deadline.</p>
+                    <a href="#" class="pu-link" data-notice="registration">Read More</a>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="pages/news.html" class="btn btn-secondary">View All Notices</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="photo-gallery">
+        <div class="container">
+            <h2>College Activities</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/placeholder1.jpg" alt="College Event" class="gallery-img">
+                    <div class="gallery-caption">Annual Tech Fest 2023</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/placeholder2.jpg" alt="College Event" class="gallery-img">
+                    <div class="gallery-caption">Programming Competition</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/placeholder3.jpg" alt="College Event" class="gallery-img">
+                    <div class="gallery-caption">Graduation Ceremony</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/placeholder4.jpg" alt="College Event" class="gallery-img">
+                    <div class="gallery-caption">Workshop on AI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advertisement Section -->
+    <section class="advertisements">
+        <div class="container">
+            <h2>Advertisements</h2>
+            <div class="ad-banner">
+                <img src="assets/images/ad-banner1.jpg" alt="Advertisement" class="ad-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>BIT Notes Portal</h3>
+                    <p>A resource for BIT students at Purbanchal University</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/notes.html">Notes</a></li>
+                        <li><a href="pages/past-questions.html">Past Questions</a></li>
+                        <li><a href="pages/syllabus.html">Syllabus</a></li>
+                        <li><a href="pages/news.html">News & Notices</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>Email: contact@bitnotes.com</p>
+                    <p>Phone: +977 1234567890</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BIT Notes Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
