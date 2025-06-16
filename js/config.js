@@ -81,10 +81,10 @@ const CONFIG = {
     // News items - for easy management
     newsItems: [
         {
-            date: 'June 15, 2023',
-            title: 'Exam Schedule for Fall 2023',
-            content: 'The examination schedule for Fall 2023 has been announced. Check the official PU website for details.',
-            link: 'examSchedule',
+            date: 'June 16,2025',
+            title: 'BIT Exam Schedule',
+            content: 'The examination schedule for BIT has been announced. Check the official PU website for details.',
+            link: 'https://puexam.edu.np/exam-schedule-new#',
             category: 'exam'
         },
         {
