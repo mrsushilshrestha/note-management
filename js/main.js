@@ -30,6 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add lazy loading for images
     addLazyLoading();
+    
+    // Initialize theme switcher
+    initializeThemeSwitcher();
+    
+    // Initialize search functionality
+    initializeSearch();
+    
+    // Initialize gallery image zoom on click
+    initializeGalleryZoom();
 });
 
 /**
@@ -88,16 +97,75 @@ function initializeGalleryImages() {
 }
 
 /**
- * Initialize advertisement banners
+ * Initialize advertisement banners with rotation and aspect ratio support
  */
 function initializeAdBanners() {
-    const adBanners = document.querySelectorAll('.ad-img');
+    const adBanner = document.getElementById('ad-banner');
     
-    adBanners.forEach((banner, index) => {
-        if (CONFIG.adBanners[index]) {
-            banner.src = CONFIG.adBanners[index];
-        }
+    if (!adBanner) return;
+    
+    // Clear any existing content
+    adBanner.innerHTML = '';
+    
+    // Set appropriate aspect ratio class based on first image or configuration
+    // You can modify this to detect each image's ratio or set manually
+    if (CONFIG.adAspectRatio) {
+        adBanner.className = `ad-banner ratio-${CONFIG.adAspectRatio}`;
+    } else {
+        adBanner.className = 'ad-banner ratio-16-9'; // Default to landscape
+    }
+    
+    // Create image elements for each banner
+    CONFIG.adBanners.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Advertisement ${index + 1}`;
+        img.className = index === 0 ? 'ad-img active' : 'ad-img';
+        
+        // Add loading attribute for better performance
+        img.loading = 'lazy';
+        
+        // Add error handling
+        img.onerror = function() {
+            console.error(`Failed to load advertisement image: ${src}`);
+            this.style.display = 'none';
+        };
+        
+        adBanner.appendChild(img);
     });
+    
+    // If there's only one image, no need for rotation
+    if (CONFIG.adBanners.length <= 1) return;
+    
+    // Set up rotation timer
+    let currentIndex = 0;
+    
+    // Function to rotate to the next image
+    function rotateAds() {
+        const images = adBanner.querySelectorAll('.ad-img');
+        
+        // Skip hidden images (those that failed to load)
+        let nextIndex = (currentIndex + 1) % images.length;
+        let attempts = 0;
+        
+        while (images[nextIndex].style.display === 'none' && attempts < images.length) {
+            nextIndex = (nextIndex + 1) % images.length;
+            attempts++;
+        }
+        
+        // If all images are hidden, do nothing
+        if (attempts >= images.length) return;
+        
+        // Hide current image
+        images[currentIndex].classList.remove('active');
+        
+        // Show new image
+        currentIndex = nextIndex;
+        images[currentIndex].classList.add('active');
+    }
+    
+    // Start rotation timer (15 seconds = 15000 milliseconds for better engagement)
+    setInterval(rotateAds, 15000);
 }
 
 /**
@@ -108,70 +176,19 @@ function loadNewsContent() {
     
     if (!newsContainer) return;
     
-    // Sample news data - in a real application, this would come from a database or API
-    const newsItems = [
-        {
-            date: 'June 15, 2023',
-            title: 'Exam Schedule for Fall 2023',
-            content: 'The examination schedule for Fall 2023 has been announced. Check the official PU website for details.',
-            link: 'exam-schedule',
-            category: 'exam'
-        },
-        {
-            date: 'June 10, 2023',
-            title: 'Results Announced',
-            content: 'Results for Spring 2023 semester have been announced. Check your results on the PU portal.',
-            link: 'results',
-            category: 'result'
-        },
-        {
-            date: 'June 5, 2023',
-            title: 'Registration Deadline',
-            content: 'Last date for exam registration is June 30, 2023. Complete your registration before the deadline.',
-            link: 'registration',
-            category: 'notice'
-        },
-        {
-            date: 'May 25, 2023',
-            title: 'Tech Fest 2023',
-            content: 'Annual Tech Fest will be held on July 15-16, 2023. Register now to participate in various competitions and workshops.',
-            link: 'notices',
-            category: 'event'
-        },
-        {
-            date: 'May 20, 2023',
-            title: 'New Course Introduction',
-            content: 'New elective courses for 7th semester students have been introduced. Check the details on the PU website.',
-            link: 'notices',
-            category: 'notice'
-        },
-        {
-            date: 'May 15, 2023',
-            title: 'Scholarship Applications',
-            content: 'Applications for merit-based scholarships are now open. Last date to apply is June 15, 2023.',
-            link: 'notices',
-            category: 'notice'
-        },
-        {
-            date: 'May 10, 2023',
-            title: 'Workshop on AI',
-            content: 'A two-day workshop on Artificial Intelligence and Machine Learning will be conducted on May 25-26, 2023.',
-            link: 'notices',
-            category: 'event'
-        },
-        {
-            date: 'May 5, 2023',
-            title: 'Mid-term Exam Results',
-            content: 'Mid-term examination results for Spring 2023 have been published. Check your results on the student portal.',
-            link: 'results',
-            category: 'result'
-        }
-    ];
+    // Use newsItems from CONFIG instead of hardcoding them here
+    const newsItems = CONFIG.newsItems || [];
     
     // Generate HTML for each news item
     newsItems.forEach(item => {
         const newsCard = document.createElement('div');
         newsCard.className = 'col-md-6 col-lg-4 news-item ' + item.category;
+        
+        // Fix the link URL if it contains backticks
+        let linkUrl = item.link;
+        if (typeof linkUrl === 'string') {
+            linkUrl = linkUrl.replace(/`/g, '').trim();
+        }
         
         newsCard.innerHTML = `
             <div class="news-card">
@@ -179,15 +196,12 @@ function loadNewsContent() {
                 <div class="news-category">${getCategoryLabel(item.category)}</div>
                 <h3>${item.title}</h3>
                 <p>${item.content}</p>
-                <a href="#" class="news-link pu-link" data-notice="${item.link}">Read More <i class="fas fa-arrow-right"></i></a>
+                <a href="${linkUrl}" class="news-link" target="_blank">${item.link.includes('http') ? 'Visit Link' : 'Read More'} <i class="fas fa-arrow-right"></i></a>
             </div>
         `;
         
         newsContainer.appendChild(newsCard);
     });
-    
-    // Initialize PU links after adding news items
-    initializePULinks();
 }
 
 /**
@@ -270,44 +284,167 @@ function initializeSidebar() {
 }
 
 /**
- * Add smooth scrolling for anchor links
+ * Initialize theme switcher
  */
-function addSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70, // Offset for header
-                    behavior: 'smooth'
-                });
-                
-                // Close sidebar if open
-                const sidebar = document.getElementById('sidebar');
-                const overlay = document.getElementById('overlay');
-                if (sidebar && sidebar.classList.contains('active')) {
-                    sidebar.classList.remove('active');
-                    overlay.classList.remove('active');
-                    
-                    // Reset icon
-                    const sidebarToggle = document.getElementById('sidebarToggle');
-                    if (sidebarToggle) {
-                        const icon = sidebarToggle.querySelector('i');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                }
-            }
-        });
+function initializeThemeSwitcher() {
+    // Create theme switcher button
+    const header = document.querySelector('header .container');
+    
+    if (!header) return;
+    
+    const themeSwitcher = document.createElement('div');
+    themeSwitcher.className = 'theme-switcher';
+    themeSwitcher.innerHTML = `
+        <button id="themeSwitchBtn">
+            <i class="fas fa-moon"></i>
+        </button>
+    `;
+    
+    header.appendChild(themeSwitcher);
+    
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.querySelector('#themeSwitchBtn i').classList.remove('fa-moon');
+        document.querySelector('#themeSwitchBtn i').classList.add('fa-sun');
+    }
+    
+    // Add event listener to theme switch button
+    document.getElementById('themeSwitchBtn').addEventListener('click', function() {
+        document.body.classList.toggle('dark-theme');
+        
+        // Update icon
+        const icon = this.querySelector('i');
+        if (document.body.classList.contains('dark-theme')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
     });
 }
 
 /**
- * Add lazy loading for images
+ * Initialize search functionality
+ */
+function initializeSearch() {
+    const header = document.querySelector('header .container');
+    
+    if (!header) return;
+    
+    // Create search button
+    const searchButton = document.createElement('div');
+    searchButton.className = 'search-button';
+    searchButton.innerHTML = `
+        <button id="searchBtn">
+            <i class="fas fa-search"></i>
+        </button>
+    `;
+    
+    header.appendChild(searchButton);
+    
+    // Create search overlay
+    const searchOverlay = document.createElement('div');
+    searchOverlay.className = 'search-overlay';
+    searchOverlay.id = 'searchOverlay';
+    searchOverlay.innerHTML = `
+        <div class="search-container">
+            <button class="close-search" id="closeSearch">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Search</h2>
+            <div class="search-form">
+                <input type="text" id="searchInput" placeholder="Search for notes, questions, etc.">
+                <button id="performSearch">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    `;
+    
+    document.body.appendChild(searchOverlay);
+    
+    // Add event listeners
+    document.getElementById('searchBtn').addEventListener('click', function() {
+        document.getElementById('searchOverlay').classList.add('active');
+        document.getElementById('searchInput').focus();
+    });
+    
+    document.getElementById('closeSearch').addEventListener('click', function() {
+        document.getElementById('searchOverlay').classList.remove('active');
+    });
+    
+    document.getElementById('searchInput').addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+    
+    document.getElementById('performSearch').addEventListener('click', performSearch);
+    
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const searchResults = document.getElementById('searchResults');
+        
+        if (searchTerm.length < 3) {
+            searchResults.innerHTML = '<p>Please enter at least 3 characters to search.</p>';
+            return;
+        }
+        
+        // Sample search results - in a real application, this would search through actual content
+        const results = [
+            {
+                title: 'Database Management Notes',
+                link: 'pages/notes.html#database',
+                type: 'Notes',
+                semester: '3rd Semester'
+            },
+            {
+                title: 'Programming Fundamentals',
+                link: 'pages/notes.html#programming',
+                type: 'Notes',
+                semester: '1st Semester'
+            },
+            {
+                title: 'Data Structures Past Questions',
+                link: 'pages/past-questions.html#data-structures',
+                type: 'Past Questions',
+                semester: '2nd Semester'
+            }
+        ].filter(item => {
+            return item.title.toLowerCase().includes(searchTerm) || 
+                   item.type.toLowerCase().includes(searchTerm) || 
+                   item.semester.toLowerCase().includes(searchTerm);
+        });
+        
+        if (results.length === 0) {
+            searchResults.innerHTML = '<p>No results found. Try different keywords.</p>';
+        } else {
+            searchResults.innerHTML = '';
+            
+            results.forEach(result => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `
+                    <h3><a href="${result.link}">${result.title}</a></h3>
+                    <p>${result.type} - ${result.semester}</p>
+                `;
+                
+                searchResults.appendChild(resultItem);
+            });
+        }
+    }
+}
+
+/**
+ * Enhanced lazy loading for images with fade-in effect
  */
 function addLazyLoading() {
     // Check if browser supports Intersection Observer
@@ -319,13 +456,30 @@ function addLazyLoading() {
                     const src = img.getAttribute('data-src');
                     
                     if (src) {
-                        img.src = src;
-                        img.removeAttribute('data-src');
+                        // Add loading class for animation
+                        img.classList.add('loading');
+                        
+                        // Create a new image to preload
+                        const newImg = new Image();
+                        newImg.src = src;
+                        newImg.onload = function() {
+                            // Once loaded, update the visible image
+                            img.src = src;
+                            img.removeAttribute('data-src');
+                            
+                            // Remove loading class and add loaded class for animation
+                            setTimeout(() => {
+                                img.classList.remove('loading');
+                                img.classList.add('loaded');
+                            }, 100);
+                        };
                     }
                     
                     observer.unobserve(img);
                 }
             });
+        }, {
+            rootMargin: '0px 0px 200px 0px' // Load images when they're 200px from viewport
         });
         
         // Target all images with data-src attribute
@@ -337,6 +491,7 @@ function addLazyLoading() {
         document.querySelectorAll('img[data-src]').forEach(img => {
             img.src = img.getAttribute('data-src');
             img.removeAttribute('data-src');
+            img.classList.add('loaded');
         });
     }
 }
@@ -353,4 +508,39 @@ function getCategoryLabel(category) {
     };
     
     return labels[category] || 'Notice';
+}
+
+/**
+ * Initialize gallery image zoom on click
+ */
+function initializeGalleryZoom() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    console.log('Found gallery items:', galleryItems.length);
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function(event) {
+            console.log('Gallery item clicked');
+            const img = this.querySelector('.gallery-img');
+            img.classList.toggle('zoomed');
+            
+            // Prevent event from bubbling up to document
+            event.stopPropagation();
+            
+            // Reset other zoomed images
+            document.querySelectorAll('.gallery-img.zoomed').forEach(zoomedImg => {
+                if (zoomedImg !== img) {
+                    zoomedImg.classList.remove('zoomed');
+                }
+            });
+        });
+    });
+    
+    // Close zoomed image when clicking elsewhere on the page
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.gallery-item')) {
+            document.querySelectorAll('.gallery-img.zoomed').forEach(img => {
+                img.classList.remove('zoomed');
+            });
+        }
+    });
 }

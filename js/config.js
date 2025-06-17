@@ -44,9 +44,9 @@ const CONFIG = {
         },
         // 7th Semester
         7: {
-            notes: "https://drive.google.com/drive/folders/7xxxxxxxxxxxxxxxx",
-            pastQuestions: "https://drive.google.com/drive/folders/7xxxxxxxxxxxxxxxx",
-            syllabus: "https://drive.google.com/drive/folders/7xxxxxxxxxxxxxxxx"
+            notes: "https://drive.google.com/drive/folders/1RgtYW6q0jbbAu67W0MiFXmcVmtCYk-5N?usp=drive_link",
+            pastQuestions: "https://drive.google.com/drive/folders/1OqS9wdt1yla3yIudTPJvIGouBIs6cdur?usp=drive_link",
+            syllabus: "https://drive.google.com/drive/folders/19pIj2RxHiAwDze8r4LmH-MkeSwPUyYQ-?usp=drive_link"
         },
         // 8th Semester
         8: {
@@ -56,7 +56,7 @@ const CONFIG = {
         }
     },
     
-    // Pokhara University notice links
+    // Purbanchal University notice links
     puLinks: {
         examSchedule: "https://pu.edu.np/exam-schedule",
         results: "https://pu.edu.np/results",
@@ -66,32 +66,46 @@ const CONFIG = {
     
     // Gallery images from Google Drive
     galleryImages: [
-        "https://drive.google.com/uc?export=view&id=1xxxxxxxxxxxxxxxx",
-        "https://drive.google.com/uc?export=view&id=2xxxxxxxxxxxxxxxx",
-        "https://drive.google.com/uc?export=view&id=3xxxxxxxxxxxxxxxx",
-        "https://drive.google.com/uc?export=view&id=4xxxxxxxxxxxxxxxx"
+        "assets/images/HWC_0783.JPG",
+        "assets/image/HWC_0783.JPG",
+        "assets/image/HWC_2652.JPG",
+        "assets/image/HWC_2661.JPG",
+        "assets/image/HWC_2662.JPG",
+        "assets/image/HWC_2663.JPG",
+         
+
     ],
     
     // Advertisement banners
+    // Advertisement banners
     adBanners: [
-        "assets/images/ad-banner1.jpg",
-        "assets/images/ad-banner2.jpg"
+        "assets/images/advertisement-1.jpg",
+        "assets/images/advertisement-4.jpg",
     ],
+    // Set the aspect ratio for advertisements (16-9, 9-16, 1-1, 4-3)
+    adAspectRatio: "16-9", // Default to landscape format
     
     // News items - for easy management
     newsItems: [
         {
-            date: 'June 16,2025',
+            date: 'June 16, 2025',
             title: 'BIT Exam Schedule',
             content: 'The examination schedule for BIT has been announced. Check the official PU website for details.',
             link: 'https://puexam.edu.np/exam-schedule-new#',
             category: 'exam'
         },
         {
+            date: 'August 20, 2023',
+            title: 'New Workshop Announcement',
+            content: 'A workshop on Web Development will be held next month. Register now to secure your spot.',
+            link: 'https://example.com/workshop',
+            category: 'event'
+        },
+        {
             date: 'June 10, 2023',
             title: 'Results Announced',
             content: 'Results for Spring 2023 semester have been announced. Check your results on the PU portal.',
-            link: 'results',
+            link: 'https://puexam.edu.np/find-results_new',
             category: 'result'
         },
         {
